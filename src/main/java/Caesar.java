@@ -2,13 +2,33 @@ import java.util.Scanner;
 
 public class Caesar {
     public static String encryptCaesar(String message) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String crow="";
+        for (int i=0; i<message.length(); i++){
+            int mary=message.charAt(i)-65;
+            mary+=3;
+            mary%=26;
+            crow+=(char) (mary+65);
+        }
+        return crow;
     }
 
     public static String decryptCaesar(String message) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        char mary=0;
+        String crow="";
+        for (int i=0; i<message.length(); i++){
+            mary=message.charAt(i);
+            if (65<=mary && mary<=90){
+                mary=(char) (mary-3);
+            }
+            if (97<=mary && mary<=122){
+                mary=(char) (mary-3);
+            }
+            else{
+                mary=(char) (mary+0);
+            }
+            crow+=mary;
+        }
+        return crow;
     }
 
     public static String encryptCaesarKey(String message, int key) {
