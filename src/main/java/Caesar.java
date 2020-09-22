@@ -4,10 +4,32 @@ public class Caesar {
     public static String encryptCaesar(String message) {
         String crow="";
         for (int i=0; i<message.length(); i++){
-            int mary=message.charAt(i)-65;
-            mary+=3;
-            mary%=26;
-            crow+=(char) (mary+65);
+            if (message.charAt(i)>=65&&message.charAt(i)<=90){
+                int mary=message.charAt(i)-65;
+                mary+=3;
+                if (mary>=3&&mary<=25){
+                    crow+= (char) (mary+65);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+65);
+                }
+            }
+            else if (message.charAt(i)>=97&&message.charAt(i)<=122){
+                int mary=message.charAt(i)-97;
+                mary+=3;
+                mary%=26;
+                if (mary>=3&&mary<=25){
+                    crow+= (char) (mary+97);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+97);
+                }
+            }
+            else{
+                crow+= (char) (message.charAt(i));
+            }
         }
         return crow;
     }
