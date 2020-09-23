@@ -2,8 +2,49 @@ import java.util.Scanner;
 
 public class Vigenere {
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String krum="";
+        for (int i=0; i<message.length(); i++){
+            if (message.charAt(i)>=65&&message.charAt(i)<=90){
+                int cheeky=message.charAt(i)-65;
+                for (int j=0; j<key.length(); j++){
+                    if (key.charAt(i)>=65&&key.charAt(i)<=90){
+                        int smill=key.charAt(i)-65;
+                        cheeky+=smill;
+                        krum+= (char) (cheeky+0);
+                    }
+                    else if (key.charAt(i)>=97&&key.charAt(i)<=122){
+                        int smill=key.charAt(i)-97;
+                        cheeky+=smill;
+                        krum+= (char) (cheeky+0);
+                    }
+                    else{
+                        krum+= (char) (message.charAt(i));
+                    }
+                }
+            }
+            else if (message.charAt(i)>=97&&message.charAt(i)<=122){
+                int cheeky=message.charAt(i)-97;
+                for (int a=0; a<key.length(); a++){
+                    if (key.charAt(i)>=65&&key.charAt(i)<=90){
+                        int smill=key.charAt(i)-65;
+                        cheeky+=smill;
+                        krum+= (char) (cheeky+0);
+                    }
+                    else if (key.charAt(i)>=97&&key.charAt(i)<=122){
+                        int smill=key.charAt(i)-97;
+                        cheeky+=smill;
+                        krum+= (char) (cheeky+0);
+                    }
+                    else{
+                        krum+= (char) (message.charAt(i));
+                    }
+                }
+            }
+            else{
+                krum+=(char) (message.charAt(i));
+            }
+        }
+        return krum;
     }
 
     public static String decryptVigenere(String message, String key) {
