@@ -35,32 +35,107 @@ public class Caesar {
     }
 
     public static String decryptCaesar(String message) {
-        char mary=0;
         String crow="";
         for (int i=0; i<message.length(); i++){
-            mary=message.charAt(i);
-            if (65<=mary && mary<=90){
-                mary=(char) (mary-3);
+            if (message.charAt(i)>=68&&message.charAt(i)<=90){
+                int mary=message.charAt(i)-65;
+                mary-=3;
+                if (mary>=3&&mary<=25){
+                    crow+= (char) (mary+65);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+65);
+                }
             }
-            if (97<=mary && mary<=122){
-                mary=(char) (mary-3);
+            else if (message.charAt(i)>=100&&message.charAt(i)<=122){
+                int mary=message.charAt(i)-97;
+                mary-=3;
+                mary%=26;
+                if (mary>=3&&mary<=25){
+                    crow+= (char) (mary+97);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+97);
+                }
+            }
+            else if (message.charAt(i)>=65&&message.charAt(i)<=67){
+                int mary=message.charAt(i)-65;
+                mary+=23;
+                crow+= (char) (mary%26 +65);
+            }
+            else if(message.charAt(i)>=97&&message.charAt(i)<=99){
+                int mary=message.charAt(i)-97;
+                mary+=23;
+                crow+=(char) (mary%26+97);
             }
             else{
-                mary=(char) (mary+0);
+                crow+= (char) (message.charAt(i));
             }
-            crow+=mary;
         }
         return crow;
     }
 
     public static String encryptCaesarKey(String message, int key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String crow="";
+        for (int i=0; i<message.length(); i++){
+            if (message.charAt(i)>=65&&message.charAt(i)<=90){
+                int mary=message.charAt(i)-65;
+                mary+=key;
+                if (mary>=key&&mary<=25){
+                    crow+= (char) (mary+65);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+65);
+                }
+            }
+            else if (message.charAt(i)>=97&&message.charAt(i)<=122){
+                int mary=message.charAt(i)-97;
+                mary+=key;
+                mary%=26;
+                if (mary>=key&&mary<=25){
+                    crow+= (char) (mary+97);
+                }
+                else{
+                    mary%=26;
+                    crow+= (char) (mary+97);
+                }
+            }
+            else{
+                crow+= (char) (message.charAt(i));
+            }
+        }
+        return crow;
     }
 
     public static String decryptCaesarKey(String message, int key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String crow="";
+        for (int i=0; i<message.length(); i++){
+            if (message.charAt(i)>=(65+key%26)&&message.charAt(i)<=90){
+                int mary=message.charAt(i)-65;
+                crow+= (char) (mary-(key%26)%26+65);
+            }
+            else if (message.charAt(i)>=(97+key%26)&&message.charAt(i)<=122){
+                int mary=message.charAt(i)-97;
+                crow+= (char) (mary-(key%26)%26+97);
+            }
+            else if (message.charAt(i)>=65&&message.charAt(i)<(65+key%26)){
+                int mary=message.charAt(i)-65;
+                mary+=26;
+                crow+= (char) (mary-(key%26)%26+65);
+            }
+            else if(message.charAt(i)>=97&&message.charAt(i)<=(97+key%26)){
+                int mary=message.charAt(i)-97;
+                mary+=26;
+                crow+=(char) (mary-(key%26)%26+97);
+            }
+            else{
+                crow+= (char) (message.charAt(i));
+            }
+        }
+        return crow;
     }
 
 
